@@ -18,6 +18,9 @@ import {
   platformer,
   paint,
   threejs,
+  azure,
+  aws,
+  haskell,
 } from "../assets";
 
 export const navLinks = [
@@ -49,7 +52,7 @@ const services = [
     icon: application,
   },
   {
-    title: "React developer",
+    title: "Cloud computing associate",
     icon: react,
   },
 ];
@@ -94,6 +97,10 @@ const technologies = [
   {
     name: "Three JS",
     icon: threejs,
+  },
+  {
+    name: "Haskell",
+    icon: haskell,
   },
   {
     name: "git",
@@ -158,4 +165,15 @@ const projects = [
   },
 ];
 
-export { services, technologies, projects };
+const certifications = [
+  {
+    image: aws,
+    title: "AWS Certified Cloud Practitioner"
+  },
+  {
+    image: azure,
+    title: "Microsoft Certified: Azure Fundamentals"
+  },
+]
+
+export { services, technologies, projects, certifications };

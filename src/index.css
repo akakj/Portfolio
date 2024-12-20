@@ -128,6 +128,14 @@
   -webkit-text-fill-color: transparent;
 }
 
+.gold-glow {
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+}
+
+.gold-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.8); /* Gold glow effect */
+}
+
 /* canvas- styles */
 .canvas-loader {
   font-size: 10px;

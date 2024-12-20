@@ -3,6 +3,7 @@ import { styles } from "../styles";
 import { staggerContainer } from "../utilities/motion";
 
 const SectionWrapper = (Component, idName, maxWidth) =>
+  
   function HOC() {
     return (
       <motion.section

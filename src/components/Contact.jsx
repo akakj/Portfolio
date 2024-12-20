@@ -155,7 +155,7 @@ const Contact = () => {
               className="w-12 h-12 object-contain"
             />
             <div className="absolute bottom-[-1.5rem] left-1/2 transform -translate-x-1/2 translate-y-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-tertiary text-[#a8f1ff] text-[10px] px-2 py-1 rounded-md">
-            linkedin logo icon by Icons8
+              linkedin logo icon by Icons8
             </div>
           </div>
         </motion.div>

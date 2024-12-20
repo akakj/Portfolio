@@ -21,6 +21,9 @@ import reactjs from "./tech/reactjs.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import azure from "./azure.png";
+import aws from "./aws.png";
+import haskell from "./tech/haskell.png";
 
 import nea from "./nea.png";
 import platformer from "./platformer.png";
@@ -49,6 +52,9 @@ export {
   tailwind,
   typescript,
   threejs,
+  azure,
+  aws,
+  haskell,
   nea,
   platformer,
   paint,

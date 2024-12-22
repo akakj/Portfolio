@@ -21,7 +21,7 @@ const Computers = ({ isMobile }) => {
     ? [0, -5, -2] 
     : isMobile
     ? [0, -3.5, -2.2]
-    : [0, -3.5, -1.5]; 
+    : [0, -3.5, -1.75]; 
 
   return (
     <mesh>

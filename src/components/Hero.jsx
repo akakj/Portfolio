@@ -1,13 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import { consoleText } from "../utilities/consoleText";
 
 const Hero = () => {
+  const [isSmallScreenHeight, setIsSmallScreenHeight] = useState(false);
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+
   useEffect(() => {
     consoleText(["Anna"], "text", ["#a349fc"]);
+
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+      setIsSmallScreenHeight(window.innerHeight <= 500);  // Adjust threshold for small screens
+    };
+
+    // Set initial state
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Calculate dynamic bottom position based on screen height
+  const bottomPosition = screenHeight <= 500 ? "bottom-10" : "bottom-32";
 
   return (
     <section className="relative w-full h-screen mx-auto flex flex-col items-center justify-center">
@@ -37,12 +57,14 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      
+
+      {/* ComputersCanvas section */}
       <div className="relative w-full h-full">
-        <ComputersCanvas />
+        <ComputersCanvas isSmallScreenHeight={isSmallScreenHeight} />
       </div>
 
-      <div className="absolute bottom-32 sm:bottom-5 w-full flex justify-center items-center">
+      {/* Adjusted Bottom Element */}
+      <div className={`absolute ${bottomPosition} sm:bottom-5 w-full flex justify-center items-center`}>
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-white flex justify-center items-start p-2">
             <motion.div

@@ -10,7 +10,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-screen mx-auto">
+    <section className="relative w-full h-screen mx-auto flex flex-col items-center justify-center">
       <div
         className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5`}
       >
@@ -37,7 +37,10 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <ComputersCanvas />
+      
+      <div className="relative w-full h-full">
+        <ComputersCanvas />
+      </div>
 
       <div className="absolute bottom-32 sm:bottom-5 w-full flex justify-center items-center">
         <a href="#about">

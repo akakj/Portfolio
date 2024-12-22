@@ -7,9 +7,25 @@ import CanvasLoader from "../Loader";
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  
+  useEffect(() => {
+    const handleResize = () => setScreenHeight(window.innerHeight);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isVerySmallScreen = screenHeight <= 600;  
+  const position = isVerySmallScreen
+    ? [0, -5, -2] 
+    : isMobile
+    ? [0, -3.5, -2.2]
+    : [0, -3.5, -1.5]; 
+
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor='black' />
+      <hemisphereLight intensity={0.15} groundColor="black" />
       <spotLight
         position={[-20, 100, 10]}
         angle={0.12}
@@ -22,12 +38,13 @@ const Computers = ({ isMobile }) => {
       <primitive
         object={computer.scene}
         scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -2.5, -2.2] : [0, -3.5, -1.5]}
+        position={position}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
 };
+
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);

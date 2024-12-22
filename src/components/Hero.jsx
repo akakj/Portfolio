@@ -30,7 +30,7 @@ const Hero = () => {
             </span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-          I focus on web and game development
+            I focus on web and game development
             <br className="sm:block hidden" /> and user interfaces{" "}
             <br className="sm:block hidden" />
             while also diving deeper into cloud technologies
@@ -39,7 +39,7 @@ const Hero = () => {
       </div>
       <ComputersCanvas />
 
-      <div className="absolute bottom-5 w-full flex justify-center items-center">
+      <div className="absolute bottom-5 sm:bottom-10 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-white flex justify-center items-start p-2">
             <motion.div

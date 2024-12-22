@@ -10,21 +10,24 @@ import { SectionWrapper } from "../hoc";
 const CertificateCard = ({ index, image, title }) => {
   return (
     <motion.div variants={fadeIn("right", "spring", index * 0.5, 0.75)}>
-      <div class="-inset-0.5 bg-pink-600 rounded-lg"></div>
       <Tilt
         options={{
           max: 30,
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary p-5 rounded-3xl sm:w-[300px] md:w-[370px] lg:w-[410px] w-full shadow-card border-4 border-transparent gold-glow"
+        className="bg-tertiary p-5 rounded-3xl shadow-card border-4 border-transparent gold-glow flex flex-col items-center justify-between
+          sm:w-[250px] sm:h-[350px] md:w-[300px] md:h-[400px] lg:w-[350px] lg:h-[450px] w-full h-auto"
       >
-        <div className="flex justify-center items-center w-full h-[230px]">
+        <div className="w-full h-[70%] flex justify-center items-center">
           <img
             src={image}
             alt={title}
-            className="max-w-full max-h-full object-contain"
+            className="w-full h-full object-contain"
           />
+        </div>
+        <div className="mt-3 text-center">
+          <h3 className="text-white text-[16px] md:text-[18px] lg:text-[20px] font-semibold">{title}</h3>
         </div>
       </Tilt>
     </motion.div>

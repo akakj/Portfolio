@@ -5,37 +5,39 @@ import { ComputersCanvas } from "./canvas";
 import { consoleText } from "../utilities/consoleText";
 import debounce from "lodash/debounce";
 
+// Debounce function moved outside of useEffect
+const handleResizeDebounced = debounce((setScreenHeight, setIsSmallScreenHeight) => {
+  const height = window.innerHeight;
+  setScreenHeight(height);
+  setIsSmallScreenHeight(height <= 500); // Adjust threshold for small screens
+}, 200); // Adjust debounce delay as needed
 
 const Hero = () => {
   const [isSmallScreenHeight, setIsSmallScreenHeight] = useState(false);
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [screenHeight, setScreenHeight] = useState(typeof window !== "undefined" ? window.innerHeight : 0);
 
   useEffect(() => {
     consoleText(["Anna"], "text", ["#a349fc"]);
 
-    const handleResize = debounce(() => {
-      setScreenHeight(window.innerHeight);
-      setIsSmallScreenHeight(window.innerHeight <= 500); // Adjust threshold for small screens
-    }, 200); // Adjust debounce delay as needed
-
     // Set initial state
-    handleResize();
+    if (typeof window !== "undefined") {
+      handleResizeDebounced(setScreenHeight, setIsSmallScreenHeight);
 
-    // Add resize event listener
-    window.addEventListener("resize", handleResize);
+      // Add resize event listener
+      window.addEventListener("resize", () => handleResizeDebounced(setScreenHeight, setIsSmallScreenHeight));
 
-    // Cleanup listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
+      // Cleanup listener on unmount
+      return () => window.removeEventListener("resize", () => handleResizeDebounced(setScreenHeight, setIsSmallScreenHeight));
+    }
   }, []);
 
   // Calculate dynamic bottom position based on screen height
   const bottomPosition =
-  screenHeight <= 500 
-    ? "bottom-10" 
-    : screenHeight <= 1080 
-      ? "bottom-20" 
-      : "bottom-32";
-
+    screenHeight <= 500 
+      ? "bottom-10" 
+      : screenHeight <= 1080 
+        ? "bottom-20" 
+        : "bottom-32";
 
   return (
     <section className="relative w-full h-screen mx-auto flex flex-col items-center justify-center">

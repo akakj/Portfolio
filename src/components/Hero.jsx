@@ -29,7 +29,13 @@ const Hero = () => {
   }, []);
 
   // Calculate dynamic bottom position based on screen height
-  const bottomPosition = screenHeight <= 500 ? "bottom-32" : "bottom-10";
+  const bottomPosition =
+  screenHeight <= 500 
+    ? "bottom-10" 
+    : screenHeight <= 1080 
+      ? "bottom-20" 
+      : "bottom-32";
+
 
   return (
     <section className="relative w-full h-screen mx-auto flex flex-col items-center justify-center">

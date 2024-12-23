@@ -29,7 +29,7 @@ const Hero = () => {
   }, []);
 
   // Calculate dynamic bottom position based on screen height
-  const bottomPosition = screenHeight <= 500 ? "bottom-10" : "bottom-32";
+  const bottomPosition = screenHeight <= 500 ? "bottom-32" : "bottom-10";
 
   return (
     <section className="relative w-full h-screen mx-auto flex flex-col items-center justify-center">
@@ -67,7 +67,7 @@ const Hero = () => {
 
       {/* Adjusted Bottom Element */}
       <div
-        className={`absolute ${bottomPosition} sm:bottom-5 w-full flex justify-center items-center`}
+        className={`absolute ${bottomPosition} sm:bottom-10 w-full flex justify-center items-center`}
       >
         <a href="#about" aria-label="Scroll to About Section">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-white flex justify-center items-start p-2">

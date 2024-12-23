@@ -5,6 +5,7 @@ import { ComputersCanvas } from "./canvas";
 import { consoleText } from "../utilities/consoleText";
 import debounce from "lodash/debounce";
 
+
 const Hero = () => {
   const [isSmallScreenHeight, setIsSmallScreenHeight] = useState(false);
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);

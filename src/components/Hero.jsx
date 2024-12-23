@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import { consoleText } from "../utilities/consoleText";
+import debounce from "lodash/debounce";
 
 const Hero = () => {
   const [isSmallScreenHeight, setIsSmallScreenHeight] = useState(false);
@@ -11,10 +12,10 @@ const Hero = () => {
   useEffect(() => {
     consoleText(["Anna"], "text", ["#a349fc"]);
 
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       setScreenHeight(window.innerHeight);
-      setIsSmallScreenHeight(window.innerHeight <= 500);  // Adjust threshold for small screens
-    };
+      setIsSmallScreenHeight(window.innerHeight <= 500); // Adjust threshold for small screens
+    }, 200); // Adjust debounce delay as needed
 
     // Set initial state
     handleResize();
@@ -64,8 +65,10 @@ const Hero = () => {
       </div>
 
       {/* Adjusted Bottom Element */}
-      <div className={`absolute ${bottomPosition} sm:bottom-5 w-full flex justify-center items-center`}>
-        <a href="#about">
+      <div
+        className={`absolute ${bottomPosition} sm:bottom-5 w-full flex justify-center items-center`}
+      >
+        <a href="#about" aria-label="Scroll to About Section">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-white flex justify-center items-start p-2">
             <motion.div
               animate={{

@@ -9,7 +9,12 @@ import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utilities/motion";
 
 const ProjectCard = memo(({ index, name, description, tags, image, link }) => (
-  <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+  <motion.div 
+    variants={fadeIn("up", "spring", index * 0.3, 0.75)} // Reduced delay multiplier from 0.5 to 0.3
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true, amount: 0.1 }} // Add viewport config here too
+  >
     <Tilt
       options={{
         max: 45,

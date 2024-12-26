@@ -1,21 +1,24 @@
-import { useState, useRef, Suspense, useMemo } from "react";
+import { useState, useRef, Suspense, useMemo, memo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
 
-const Stars = (props) => {
+const Stars = memo((props) => {
   const ref = useRef();
+  const rotationSpeed = useRef({ x: 0, y: 0 });
 
-  // Ensure that the sphere array is correctly generated
   const sphere = useMemo(() => {
-    const positions = new Float32Array(5000 * 3); // Each point needs 3 values (x, y, z)
+    const positions = new Float32Array(5000 * 3);
     random.inSphere(positions, { radius: 1.2 });
     return positions;
   }, []);
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 10;
-    ref.current.rotation.y -= delta / 15;
+    rotationSpeed.current.x = delta / 10;
+    rotationSpeed.current.y = delta / 15;
+    
+    ref.current.rotation.x -= rotationSpeed.current.x;
+    ref.current.rotation.y -= rotationSpeed.current.y;
   });
 
   return (
@@ -31,13 +34,13 @@ const Stars = (props) => {
       </Points>
     </group>
   );
-};
+});
 
 const StarsCanvas = () => {
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Canvas camera={{ position: [0, 0, 1], fov: 60 }}>
+        <Suspense fallback={null}>
           <Stars />
         </Suspense>
         <Preload all />

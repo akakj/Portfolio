@@ -1,27 +1,25 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, memo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile }) => {
+const Computers = memo(({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");
 
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   
   useEffect(() => {
     const handleResize = () => setScreenHeight(window.innerHeight);
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isVerySmallScreen = screenHeight <= 600;  
-  const position = isVerySmallScreen
-    ? [0, -4.5, -2] 
+  const position = screenHeight <= 600
+    ? [0, -4.5, -2]
     : isMobile
     ? [0, -3.5, -2.2]
-    : [0, -3.5, -1.75]; 
+    : [0, -3.5, -1.75];
 
   return (
     <mesh>
@@ -43,35 +41,24 @@ const Computers = ({ isMobile }) => {
       />
     </mesh>
   );
-};
+});
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
     const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);
 
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
+    const handleMediaQueryChange = (event) => setIsMobile(event.matches);
     mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
   }, []);
 
   return (
     <Canvas
-      frameloop='demand'
+      frameloop="demand"
       shadows
       dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
@@ -85,7 +72,6 @@ const ComputersCanvas = () => {
         />
         <Computers isMobile={isMobile} />
       </Suspense>
-
       <Preload all />
     </Canvas>
   );

@@ -9,7 +9,7 @@ import debounce from "lodash/debounce";
 const handleResizeDebounced = debounce((setScreenHeight, setIsSmallScreenHeight) => {
   const height = window.innerHeight;
   setScreenHeight(height);
-  setIsSmallScreenHeight(height <= 500); // Adjust threshold for small screens
+  setIsSmallScreenHeight(height <= 600); // Adjust threshold for small screens
 }, 200); // Adjust debounce delay as needed
 
 const Hero = () => {
@@ -42,7 +42,7 @@ const Hero = () => {
   return (
     <section className="relative w-full h-screen mx-auto flex flex-col items-center justify-center">
       <div
-        className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5`}
+        className={`${styles.paddingX} absolute inset-0 ${isSmallScreenHeight ? 'top-[85px]' : 'top-[120px]'} max-w-7xl mx-auto flex flex-row items-start gap-5`}
       >
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#a349fc]" />
@@ -50,7 +50,7 @@ const Hero = () => {
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
+          <h1 className={`${isSmallScreenHeight ? styles.smallHeroHeadText : styles.heroHeadText} text-white`}>
             Hi, I'm <span id="text" className="text-white inline-block"></span>
             <span
               id="console"
@@ -59,7 +59,7 @@ const Hero = () => {
               &#95;
             </span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+          <p className={`${isSmallScreenHeight ? styles.smallHeroSubText : styles.heroSubText} mt-2 text-white-100`}>
             I focus on web and game development
             <br className="sm:block hidden" /> and user interfaces{" "}
             <br className="sm:block hidden" />

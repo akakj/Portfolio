@@ -18,7 +18,7 @@ const Computers = ({ isMobile }) => {
 
   const isVerySmallScreen = screenHeight <= 600;  
   const position = isVerySmallScreen
-    ? [0, -5, -2] 
+    ? [0, -4.5, -2] 
     : isMobile
     ? [0, -3.5, -2.2]
     : [0, -3.5, -1.75]; 

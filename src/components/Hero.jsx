@@ -4,7 +4,6 @@ import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import { consoleText } from "../utilities/consoleText";
 import debounce from "lodash/debounce";
-import ErrorBoundary from "./ErrorBoundary";
 
 const Hero = memo(() => {
   const [isSmallScreenHeight, setIsSmallScreenHeight] = useState(false);
@@ -79,9 +78,7 @@ const Hero = memo(() => {
       </div>
 
       <div className="relative w-full h-full">
-        <ErrorBoundary>
         <ComputersCanvas isSmallScreenHeight={isSmallScreenHeight} />
-        </ErrorBoundary>
       </div>
 
       <div className={`absolute ${bottomPosition} w-full flex justify-center items-center`}>

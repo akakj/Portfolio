@@ -15,7 +15,8 @@ const CertificateCard = memo(({ index, image, title }) => (
         scale: 1,
         speed: 450,
       }}
-      className="bg-tertiary p-5 rounded-3xl shadow-card border-4 border-transparent gold-glow flex flex-col items-center justify-between sm:w-[360px] md:w-[400px] lg:w-[440px] w-full"
+      className="bg-tertiary p-5 rounded-3xl shadow-card border-4 border-transparent gold-glow flex flex-col items-center justify-between
+        sm:w-[250px] sm:h-[350px] md:w-[300px] md:h-[400px] lg:w-[350px] lg:h-[450px] w-[325px] h-auto"
     >
       <div className="w-full h-[70%] flex justify-center items-center">
         <img

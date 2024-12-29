@@ -160,7 +160,7 @@ const projects = [
       },
     ],
     image: paint,
-    github_link: "https://github.com/akakj/Paint",
+    github_link: "https://github.com/akakj/Paint-like",
     link: "",
   },
 ];

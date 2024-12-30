@@ -1,20 +1,24 @@
 import React, { Suspense, useEffect, useState, memo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-
 import CanvasLoader from "../Loader";
-import ErrorBoundary from "../ErrorBoundary";
 
 const Computers = memo(({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");
-
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   
   useEffect(() => {
     const handleResize = () => setScreenHeight(window.innerHeight);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      scene.traverse((object) => {
+        if (object.material) object.material.dispose();
+        if (object.geometry) object.geometry.dispose();
+      });
+    };
+  }, [scene]);
 
   const position = screenHeight <= 600
     ? [0, -4.5, -2]
@@ -46,7 +50,6 @@ const Computers = memo(({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [canRender, setCanRender] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
@@ -64,7 +67,12 @@ const ComputersCanvas = () => {
       shadows
       dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
+      onCreated={({ gl }) => {
+        gl.dispose();
+      }}
+      onContextLost={(event) => {
+        event.preventDefault();
+      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls

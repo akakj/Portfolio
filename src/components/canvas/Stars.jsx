@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense, useMemo, memo } from "react";
+import { useRef, Suspense, useMemo, memo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
@@ -11,6 +11,15 @@ const Stars = memo((props) => {
     const positions = new Float32Array(5000 * 3);
     random.inSphere(positions, { radius: 1.2 });
     return positions;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (ref.current) {
+        ref.current.geometry?.dispose();
+        ref.current.material?.dispose();
+      }
+    };
   }, []);
 
   useFrame((state, delta) => {
@@ -39,7 +48,12 @@ const Stars = memo((props) => {
 const StarsCanvas = () => {
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1], fov: 60 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 1], fov: 60 }}
+        onCreated={({ gl }) => {
+          gl.dispose();
+        }}
+      >
         <Suspense fallback={null}>
           <Stars />
         </Suspense>

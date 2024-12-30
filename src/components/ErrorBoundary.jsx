@@ -6,6 +6,23 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false };
   }
 
+  componentDidMount() {
+    this.handleWebGLWarning = (event) => {
+      if (event.message && event.message.includes("Too many active WebGL contexts")) {
+        alert("Warning: Your device has reached its WebGL context limit. You may experience visual glitches.");
+        this.setState({ hasError: true });
+      }
+    };
+
+    window.addEventListener("error", this.handleWebGLWarning);
+    window.addEventListener("warning", this.handleWebGLWarning);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("error", this.handleWebGLWarning);
+    window.removeEventListener("warning", this.handleWebGLWarning);
+  }
+
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
@@ -13,13 +30,13 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="w-full h-screen flex items-center justify-center">
-          <p className="text-white text-[18px] text-center px-4">
-            Sorry, cannot load this model due to your device capabilities
-          </p>
+        <div className="error-boundary">
+          <h1>Something went wrong.</h1>
+          <p>Please refresh the page to continue.</p>
         </div>
       );
     }
+
     return this.props.children;
   }
 }

@@ -12,10 +12,12 @@ import {
   Certifications,
   StarsCanvas,
 } from "./components";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App = () => {
   return (
     <BrowserRouter>
+    <ErrorBoundary>
       <div className="relative z-0 bg-primary">
         <BackgroundMusic />
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
@@ -31,6 +33,7 @@ const App = () => {
           <StarsCanvas />
         </div>
       </div>
+    </ErrorBoundary>
     </BrowserRouter>
   );
 };

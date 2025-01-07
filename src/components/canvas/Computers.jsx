@@ -5,12 +5,13 @@ import CanvasLoader from "../Loader";
 
 const Computers = memo(({ isMobile }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-  
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);  // Declare screenHeight state
+
   useEffect(() => {
-    const handleResize = () => setScreenHeight(window.innerHeight);
+    const handleResize = () => setScreenHeight(window.innerHeight);  // Fix reference issue
+
     window.addEventListener("resize", handleResize);
-    
+
     return () => {
       window.removeEventListener("resize", handleResize);
       scene.traverse((object) => {
@@ -55,10 +56,15 @@ const ComputersCanvas = () => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
     setIsMobile(mediaQuery.matches);
 
-    const handleMediaQueryChange = (event) => setIsMobile(event.matches);
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
+
     mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
   }, []);
 
   return (

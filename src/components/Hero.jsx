@@ -21,7 +21,7 @@ const Hero = memo(() => {
   );
 
   useEffect(() => {
-    consoleText(["Anna"], "text", ["#a349fc"]);
+    consoleText(["Anna"], "text", ["#cf6ef5"]); //original colour: #a349fc
 
     if (typeof window !== "undefined") {
       handleResize();

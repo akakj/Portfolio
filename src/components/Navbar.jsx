@@ -8,7 +8,7 @@ const NavItem = ({ nav, active, setActive }) => (
   <li
     key={nav.id}
     className={`${
-      active === nav.title ? "text-white" : "text-secondary"
+      active === nav.title ? "text-purple" : "text-secondary"
     } hover:text-white text-[18px] font-medium cursor-pointer`}
     onClick={() => setActive(nav.title)}
   >
@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary rounded-full`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
@@ -35,7 +35,7 @@ const Navbar = () => {
         >
           <img src={logo} alt="logo" className="w-10 h-10 object-contain" />
           <p className="text-white text-[18px] font-bold cursor-pointer flex">
-            Anna Kandyba &nbsp;<span className="sm:block hidden"> | Portfolio</span>
+            Anna Kandyba &nbsp;<span className="sm:block hidden">| Portfolio</span>
           </p>
         </Link>
 

@@ -41,7 +41,7 @@ const ProjectCard = memo(({ index, name, description, tags, image, link }) => {
               </div>
             )}
             <div onClick={() => window.open(link, "_blank")} className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:w-11 hover:h-11">
-              <img src={github} alt="github" className="w-1/2 h-1/2 object-contain" />
+              <img src={github} alt="github" className="w-3/5 h-3/5 object-contain" />
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.violet-gradient {
+/*.violet-gradient {
   background: #804dee;
   background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
   background: -webkit-linear-gradient(
@@ -41,7 +41,19 @@
     #804dee 0%,
     rgba(60, 51, 80, 0) 100%
   );
+}*/
+
+.violet-gradient {
+  background: #cf6ef5;
+  background: linear-gradient(-90deg, #cf6ef5 0%, rgba(60, 51, 80, 0) 100%);
+  background: -webkit-linear-gradient(
+    -90deg,
+    #cf6ef5 0%,
+    rgba(60, 51, 80, 0) 100%
+  );
 }
+
+
 
 .red-gradient {
   background: #800000; /* fallback for old browsers */
@@ -140,7 +152,7 @@
 }
 
 .gold-glow:hover {
-  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.8); /* Gold glow effect */
+  box-shadow: 0 0 15px 5px rgba(187, 0, 255, 0.845); /* Gold glow effect */
 }
 
 /* canvas- styles */

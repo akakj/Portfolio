@@ -3,12 +3,12 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
-const Computers = memo(({ isMobile }) => {
+const Computers = memo(({ isMobile, isWebGLActive }) => {
   const { scene } = useGLTF("./desktop_pc/scene.gltf");
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);  // Declare screenHeight state
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   useEffect(() => {
-    const handleResize = () => setScreenHeight(window.innerHeight);  // Fix reference issue
+    const handleResize = () => setScreenHeight(window.innerHeight);
 
     window.addEventListener("resize", handleResize);
 
@@ -39,18 +39,35 @@ const Computers = memo(({ isMobile }) => {
         shadow-mapSize={1024}
       />
       <pointLight intensity={32} />
-      <primitive
-        object={scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={position}
-        rotation={[-0.01, -0.2, -0.1]}
-      />
+      {isWebGLActive ? (
+        <primitive
+          object={scene}
+          scale={isMobile ? 0.7 : 0.75}
+          position={position}
+          rotation={[-0.01, -0.2, -0.1]}
+        />
+      ) : (
+        <img
+          src="./desktop_pc/spritesheet.png"
+          alt="sprite sheet"
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "contain",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      )}
     </mesh>
   );
 });
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isWebGLActive, setIsWebGLActive] = useState(true); // Track WebGL context state
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
@@ -67,6 +84,20 @@ const ComputersCanvas = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleContextLost = (event) => {
+      event.preventDefault(); // Prevent default handling of the context lost
+      setIsWebGLActive(false); // Set WebGL to inactive and switch to sprite sheet
+    };
+
+    const canvas = document.querySelector("canvas");
+    canvas.addEventListener("webglcontextlost", handleContextLost);
+
+    return () => {
+      canvas.removeEventListener("webglcontextlost", handleContextLost);
+    };
+  }, []);
+
   return (
     <Canvas
       frameloop="demand"
@@ -76,9 +107,6 @@ const ComputersCanvas = () => {
       onCreated={({ gl }) => {
         gl.dispose();
       }}
-      onContextLost={(event) => {
-        event.preventDefault();
-      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
@@ -86,7 +114,7 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} />
+        <Computers isMobile={isMobile} isWebGLActive={isWebGLActive} />
       </Suspense>
       <Preload all />
     </Canvas>

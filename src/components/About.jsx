@@ -47,7 +47,7 @@ const About = () => {
       max-w-3xl leading-[30px] items-center"
       >
         I'm a skilled software developer with expertise in Python, C#, HTML,
-        CSS, JavaScript, TypeScript, and SQL, and I also have some knowledge of
+        CSS, JavaScript, TypeScript, Java and SQL, and I also have some knowledge of
         assembly language. I've worked with multiple libraries and frameworks,
         including Pygame, React.js, Node.js, and Three.js.<br></br>
         My knowledge of these languages has been self-taught, driven by my

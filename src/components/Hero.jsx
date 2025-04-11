@@ -77,6 +77,7 @@ const Hero = memo(() => {
         </div>
       </div>
 
+      // Load a computer model
       <div className="relative w-full h-full">
         <ComputersCanvas isSmallScreenHeight={isSmallScreenHeight} />
       </div>

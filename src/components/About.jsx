@@ -46,20 +46,11 @@ const About = () => {
         className="mt-4 text-secondary text-[17px]
       max-w-3xl leading-[30px] items-center"
       >
-        I'm a skilled software developer with expertise in Python, C#, HTML,
-        CSS, JavaScript, TypeScript, Java and SQL, and I also have some knowledge of
+        I'm a Computer Science student at University of Edinburgh with expertise in JavaScript, TypeScript, Python, C#, Java and SQL, and I also have some knowledge of
         assembly language. I've worked with multiple libraries and frameworks,
-        including Pygame, React.js, Node.js, and Three.js.<br></br>
-        My knowledge of these languages has been self-taught, driven by my
-        passion for bringing ideas to life. Let's work together to bring your
+        including React, Next.js, and Three.js.<br></br> Let's work together to bring your
         ideas to reality!
       </motion.p>
-
-      <div className="mt-20 flex flex-wrap gap-10 justify-center">
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
-      </div>
     </>
   );
 };

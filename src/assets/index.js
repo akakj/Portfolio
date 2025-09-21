@@ -25,8 +25,10 @@ import azure from "./azure.png";
 import aws from "./aws.png";
 import haskell from "./tech/haskell.png";
 
+import uoe from "./uoe.png";
+
 import nea from "./nea.png";
-import platformer from "./platformer.png";
+import codey from "./codey.png";
 import paint from "./paint.png";
 
 export {
@@ -55,7 +57,8 @@ export {
   azure,
   aws,
   haskell,
+  uoe,
   nea,
-  platformer,
+  codey,
   paint,
 };

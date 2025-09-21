@@ -1,5 +1,4 @@
 import {
-  game,
   web,
   application,
   react,
@@ -15,12 +14,13 @@ import {
   git,
   sql,
   nea,
-  platformer,
+  codey,
   paint,
   threejs,
   azure,
   aws,
   haskell,
+  uoe
 } from "../assets";
 
 export const navLinks = [
@@ -32,6 +32,10 @@ export const navLinks = [
     id: "work",
     title: "Work",
   },
+   {
+    id: "projects",
+    title: "Projects",
+  },
   {
     id: "contact",
     title: "Contact",
@@ -39,10 +43,6 @@ export const navLinks = [
 ];
 
 const services = [
-  {
-    title: "Game developer",
-    icon: game,
-  },
   {
     title: "Web developer",
     icon: web,
@@ -112,7 +112,40 @@ const technologies = [
   },
 ];
 
+const experiences = [
+  {
+    title: "Tutor and Marker",
+    company_name: "School of Informatics, The University of Edinburgh",
+    icon: uoe,
+    iconBg: "#383E56",
+    date: "September 2025 - December 2025",
+    points: [
+      "Leading weekly tutorials covering Haskell Functional Programming and Computational Logic.",
+      "Marking coursework and provided clear, rubric-based written feedback",
+      "Preparing materials and coordinated with the teaching team for consistent delivery.",
+    ],
+  }
+];
+
 const projects = [
+  {
+    name: "In Progress: Codey",
+    description:
+      "Codey is a practice platform where you can browse problems, read statements, and (soon) write and run code in-browser. It’s built to be fast, clean, and easy to extend.",
+    tags: [
+      {
+        name: "typescript",
+        color: "",
+      },
+      {
+        name: "next.js",
+        color: "green-text-gradient",
+      },
+    ],
+    image: codey,
+    github_link: "https://github.com/akakj/codey",
+    link: "",
+  },
   {
     name: "Neo's Enchanting Adventures",
     description:
@@ -130,24 +163,6 @@ const projects = [
     image: nea,
     github_link: "https://github.com/akakj/NEA",
     link: "https://www.youtube.com/watch?v=yDPE1SJq3dI",
-  },
-  {
-    name: "Mai's Jumping",
-    description:
-      "A mobile platformer developed in Unity using C#. The platformer features simple jumping mechanics, coin collection, and a skin shop.",
-    tags: [
-      {
-        name: "unity",
-        color: "white-text-gradient",
-      },
-      {
-        name: "c#",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: platformer,
-    github_link: "",
-    link: "",
   },
   {
     name: "Paint-like Application",
@@ -176,4 +191,4 @@ const certifications = [
   },
 ]
 
-export { services, technologies, projects, certifications };
+export { services, technologies, experiences, projects, certifications };

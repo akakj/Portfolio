@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import { memo, useEffect } from "react";
 import { Tilt } from "react-tilt";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -12,7 +12,7 @@ const ProjectCard = memo(({ index, name, description, tags, image, link }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   useEffect(() => {
@@ -33,15 +33,33 @@ const ProjectCard = memo(({ index, name, description, tags, image, link }) => {
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] md:w-[400px] lg:w-[440px] w-full"
       >
         <div className="relative w-full h-[230px]">
-          <img src={image} alt={name} className="w-full h-full object-cover rounded-2xl" />
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover rounded-2xl"
+          />
           <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
             {name === "Neo's Enchanting Adventures" && (
-              <div onClick={() => window.open(link, "_blank")} className="red-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:w-11 hover:h-11">
-                <img src={youtube} alt="youtube" className="scale-[0.6] object-contain" />
+              <div
+                onClick={() => window.open(link, "_blank")}
+                className="red-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:w-11 hover:h-11"
+              >
+                <img
+                  src={youtube}
+                  alt="youtube"
+                  className="scale-[0.6] object-contain"
+                />
               </div>
             )}
-            <div onClick={() => window.open(link, "_blank")} className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:w-11 hover:h-11">
-              <img src={github} alt="github" className="w-3/5 h-3/5 object-contain" />
+            <div
+              onClick={() => window.open(link, "_blank")}
+              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer hover:w-11 hover:h-11"
+            >
+              <img
+                src={github}
+                alt="github"
+                className="w-3/5 h-3/5 object-contain"
+              />
             </div>
           </div>
         </div>
@@ -51,7 +69,9 @@ const ProjectCard = memo(({ index, name, description, tags, image, link }) => {
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <p key={tag.name} className={`text-[15px] ${tag.color}`}>~{tag.name}</p>
+            <p key={tag.name} className={`text-[15px] ${tag.color}`}>
+              ~{tag.name}
+            </p>
           ))}
         </div>
       </Tilt>
@@ -59,11 +79,11 @@ const ProjectCard = memo(({ index, name, description, tags, image, link }) => {
   );
 });
 
-const Works = () => {
+const Projects = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   useEffect(() => {
@@ -74,12 +94,22 @@ const Works = () => {
 
   return (
     <>
-      <motion.div ref={ref} initial="hidden" animate={controls} variants={textVariant()}>
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={textVariant()}
+      >
         <p className={styles.sectionSubText}>My work</p>
         <h2 className={styles.sectionHeadText}>Projects</h2>
       </motion.div>
       <div className="w-full flex">
-        <motion.p initial="hidden" animate={controls} variants={fadeIn("", "", 0.1, 1)} className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
+        <motion.p
+          initial="hidden"
+          animate={controls}
+          variants={fadeIn("", "", 0.1, 1)}
+          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
+        >
           The following projects highlight my skills and experience through
           real-world examples of my work. Each project is briefly described. It
           reflects my ability to solve complex problems, work with diverse
@@ -95,4 +125,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "work");
+export default SectionWrapper(Projects, "projects");

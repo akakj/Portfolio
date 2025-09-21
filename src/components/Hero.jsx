@@ -35,7 +35,7 @@ const Hero = memo(() => {
 
   const bottomPosition = useMemo(() => 
     screenHeight <= 500 
-      ? "bottom-10" 
+      ? "bottom-12" 
       : screenHeight <= 1080 
         ? "bottom-20" 
         : "bottom-32",
@@ -69,15 +69,13 @@ const Hero = memo(() => {
           <p className={`${
             isSmallScreenHeight ? styles.smallHeroSubText : styles.heroSubText
           } mt-2 text-white-100`}>
-            I focus on web and game development
-            <br className="sm:block hidden" /> and user interfaces{" "}
+            Web developer crafting fast, accessible sites with React
             <br className="sm:block hidden" />
-            while also diving deeper into cloud technologies
+            I build clean, responsive web experiences—usually with Next.js, TypeScript, and Tailwind.
           </p>
         </div>
       </div>
 
-      // Load a computer model
       <div className="relative w-full h-full">
         <ComputersCanvas isSmallScreenHeight={isSmallScreenHeight} />
       </div>

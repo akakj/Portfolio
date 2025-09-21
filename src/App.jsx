@@ -1,15 +1,26 @@
 import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import BackgroundMusic from './components/BackgroundMusic';
-import { About, Contact, Hero, Navbar, Tech, Works, Certifications, StarsCanvas } from "./components";
+import BackgroundMusic from "./components/BackgroundMusic";
+import {
+  About,
+  Contact,
+  Hero,
+  Navbar,
+  Tech,
+  Experience,
+  Projects,
+  Certifications,
+  StarsCanvas,
+} from "./components";
 
 const App = () => {
-  
   useEffect(() => {
     const originalConsoleWarn = console.warn;
     console.warn = (message, ...args) => {
       if (message.includes("Too many active WebGL contexts")) {
-        alert("WARNING: Due to your device/browser limited capabilities, some textures may be displayed incorrectly.");
+        alert(
+          "WARNING: Due to your device/browser limited capabilities, some textures may be displayed incorrectly."
+        );
       }
       originalConsoleWarn(message, ...args);
     };
@@ -18,7 +29,7 @@ const App = () => {
       console.warn = originalConsoleWarn;
     };
   }, []);
-  
+
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
@@ -30,7 +41,8 @@ const App = () => {
         <About />
         <Tech />
         <Certifications />
-        <Works />
+        <Experience />
+        <Projects />
         <div className="relative z-0">
           <Contact />
           <StarsCanvas />

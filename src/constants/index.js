@@ -118,9 +118,9 @@ const experiences = [
     company_name: "School of Informatics, The University of Edinburgh",
     icon: uoe,
     iconBg: "#383E56",
-    date: "September 2025 - December 2025",
+    date: "September 2025 - May 2026",
     points: [
-      "Leading weekly tutorials covering Haskell Functional Programming and Computational Logic.",
+      "Leading weekly tutorials covering Haskell Functional Programming (semester 1) and Java (semester 2)",
       "Marking coursework and provided clear, rubric-based written feedback",
       "Preparing materials and coordinated with the teaching team for consistent delivery.",
     ],

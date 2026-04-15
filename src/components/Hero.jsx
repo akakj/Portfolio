@@ -71,7 +71,7 @@ const Hero = memo(() => {
           } mt-2 text-white-100`}>
             Web developer crafting fast, accessible sites with React
             <br className="sm:block hidden" />
-            I build clean, responsive web experiences—usually with Next.js, TypeScript, and Tailwind.
+            I build clean, responsive web experiences with Next.js, TypeScript, and Tailwind.
           </p>
         </div>
       </div>

@@ -46,7 +46,7 @@ const About = () => {
         className="mt-4 text-secondary text-[17px]
       max-w-3xl leading-[30px] items-center"
       >
-        I'm a Computer Science student at University of Edinburgh with expertise in JavaScript, TypeScript, Python, C#, Java and SQL, and I also have some knowledge of
+        I'm a Computer Science student at University of Edinburgh with expertise in JavaScript, TypeScript, Python, C#, C, Java and SQL, and I also have some knowledge of
         assembly language. I've worked with multiple libraries and frameworks,
         including React, Next.js, and Three.js.<br></br> Let's work together to bring your
         ideas to reality!
